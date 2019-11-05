@@ -5,7 +5,7 @@ Giao thức tự động gửi tin nhắn từ client -> server và ngược l�
 # Cách chạy: 
   - Chạy quyền Admin để gửi ICMP
   - Trên window tải openssl-1.1.0f-vs2017 
-  *) Config trên visual studio
+  * Config trên visual studio
     + Project -> Properties 
         - C/C++ -> general -> Additional Include Directories -> ..\openssl-1.1.0f-vs2017\include
         - Linker -> general -> Additional Include Directories -> ..\openssl-1.1.0f-vs2017\lib
