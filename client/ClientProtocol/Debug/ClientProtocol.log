@@ -1,0 +1,7 @@
+﻿  Client.cpp
+d:\nam 5\t6\6protocol\client\clientprotocol\clientprotocol\client.cpp(248): warning C4101: 'message': unreferenced local variable
+d:\nam 5\t6\6protocol\client\clientprotocol\clientprotocol\client.cpp(306): warning C4101: 'nDataLength': unreferenced local variable
+d:\nam 5\t6\6protocol\client\clientprotocol\clientprotocol\client.cpp(305): warning C4101: 'buffer': unreferenced local variable
+d:\nam 5\t6\6protocol\client\clientprotocol\clientprotocol\client.cpp(540): warning C4101: 'nIndex': unreferenced local variable
+d:\nam 5\t6\6protocol\client\clientprotocol\clientprotocol\client.cpp(295): warning C4715: 'UDP': not all control paths return a value
+  ClientProtocol.vcxproj -> D:\Nam 5\t6\6Protocol\Client\ClientProtocol\Debug\ClientProtocol.exe
