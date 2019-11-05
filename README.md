@@ -8,8 +8,8 @@ Cách chạy:
   - Trên window tải openssl-1.1.0f-vs2017 
   *) Config trên visual studio
     + Project -> Properties 
-          - C/C++ -> general -> Additional Include Directories -> ..\openssl-1.1.0f-vs2017\include;%(AdditionalIncludeDirectories).
-          - Linker -> general -> Additional Include Directories -> ..\openssl-1.1.0f-vs2017\lib;%(AdditionalIncludeDirectories).
+          - C/C++ -> general -> Additional Include Directories -> ..\openssl-1.1.0f-vs2017\include
+          - Linker -> general -> Additional Include Directories -> ..\openssl-1.1.0f-vs2017\lib
           - Input -> thêm 2 mục lib vào Additional Dependencies (libsslMT.lib;libcryptoMT.lib;).
     
   - Trên Ubuntu:
