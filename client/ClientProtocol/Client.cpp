@@ -140,6 +140,11 @@ int Protocol(char *ip) {
 				iResult = send(ConnectSocket, "1", 1, 0);
 				return 5;
 			}
+			else if (recvbuf[0] == '6') {
+				printf("\nProtocol HTTPS \n");
+				iResult = send(ConnectSocket, "1", 1, 0);
+				return 6;
+			}
 			else if (recvbuf[strlen(recvbuf) - 1] == '*') {
 				printf("Change protocol ..........\n");
 				return 10;
