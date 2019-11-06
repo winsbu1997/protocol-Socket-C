@@ -14,7 +14,7 @@ Giao thức tự động gửi tin nhắn từ client -> server và ngược l�
     
   - Trên Ubuntu:
     + Cài đặt thư viện SSL : sudo apt-get install libssl-dev
-    + gcc -Wall -o server all_server.c -L/usr/lib -lssl -lcrypto
+    + gcc all_server.c -o server -L/usr/lib -lssl -lcrypto
     + sudo ./server
     
  
