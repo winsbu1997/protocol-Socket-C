@@ -327,7 +327,7 @@ int HTTP(){
 	char sendbuf[DEFAULT_BUFLEN]={0};
 
     // Only this line has been changed. Everything is same.
-    char hello[] = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 1000\n\nHTTP Message from SERVER";
+    char hello[] = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 17\n\nHTTP Message from SERVER";
     // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
     {
