@@ -561,7 +561,7 @@ void Ping(const char *ip)
         to->sin_addr = dst;
 
         memset(&icmp_hdr, 0, sizeof icmp_hdr);
-        icmp_hdr.type = ICMP_ECHO;
+        icmp_hdr.type = ICMP_ECHOREPLY;
         icmp_hdr.un.echo.sequence = sequence++;
         icmp_hdr.un.echo.id = bg++;
         memcpy(data, &icmp_hdr, sizeof icmp_hdr);
@@ -591,8 +591,8 @@ void Ping(const char *ip)
 		ECHOREPLY echoReply;
 
 		int nRet;
-		int nRet1 = recvfrom(sock,&echoReply,sizeof(ECHOREPLY),0,(struct sockaddr *)&from,
-				&fromsize);
+		//int nRet1 = recvfrom(sock,&echoReply,sizeof(ECHOREPLY),0,(struct sockaddr *)&from,
+		//		&fromsize);
 		//char on=1;
 		//setsockopt(rawSocket,IPPROTO_IP,IP_HDRINCL,&on,sizeof(on));
 		if((nRet = recvfrom(sock,&echoReply,sizeof(ECHOREPLY),0,(struct sockaddr *)&from,
@@ -627,7 +627,7 @@ int main(int argc, char const *argv[])
 			DNS();
 		}
 		else if(protocol==5){
-			Ping("192.168.8.101");
+			Ping("192.168.8.106");
 		}
 		else{
 			HTTPS();
