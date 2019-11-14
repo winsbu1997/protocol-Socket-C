@@ -2,6 +2,7 @@
 int rand_var=0;
 char* Name[7]={"Hoang","Luan","Long","Duong","Hiep","Viet","*"};
 char PRO[6]={'1','2','3','4', '5','6'};
+const char *ip = "192.168.8.106";
 int TCP1(int new_socket){
 	printf("\nUsing TCP ......... \n");
 	char sendbuf[DEFAULT_BUFLEN] ; 
@@ -630,8 +631,7 @@ int main(int argc, char const *argv[])
 			HTTPS();
 		}
 		else{
-			
-			Ping("192.168.8.106");
+			Ping(ip);
 		}
 	}
 	

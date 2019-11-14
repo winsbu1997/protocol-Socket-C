@@ -759,9 +759,9 @@ int main()
 		}
 		else if (protocol == 5) {
 			HTTPS(ip);
+
 		}
-		else {
-			
+		else {			
 			ICMP(ip);
 		}
 	}
