@@ -218,7 +218,7 @@ int Protocol(){
 	{
 		//printf("In while in Protocol \n");
 		char cmd[1000] ={0} ; 
-		printf("Enter the Protocol (1:TCP, 2: UDP, 3: HTTP, 4: DNS, 5: ICMP, 6: HTTPS): ");
+		printf("Enter the Protocol (1:TCP, 2: UDP, 3: HTTP, 4: DNS, 5: HTTPS, 6: ICMP): ");
 		//scanf("%s", cmd);
 		cmd[0]=PRO[(rand_var++)%6];
 		sleep(1);

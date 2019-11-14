@@ -136,12 +136,12 @@ int Protocol(char *ip) {
 				return 4;
 			}
 			else if (recvbuf[0] == '5') {
-				printf("\nProtocol ICMP \n");
+				printf("\nProtocol HTPPS \n");
 				iResult = send(ConnectSocket, "1", 1, 0);
 				return 5;
 			}
 			else if (recvbuf[0] == '6') {
-				printf("\nProtocol HTTPS \n");
+				printf("\nProtocol ICMP \n");
 				iResult = send(ConnectSocket, "1", 1, 0);
 				return 6;
 			}
