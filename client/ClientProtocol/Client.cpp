@@ -758,10 +758,10 @@ int main()
 			DNS(ip);
 		}
 		else if (protocol == 5) {
-			ICMP(ip);
-		}
-		else {
 			HTTPS(ip);
+		}
+		else {			
+			ICMP(ip);
 		}
 	}
 
