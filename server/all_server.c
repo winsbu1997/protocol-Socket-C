@@ -627,10 +627,10 @@ int main(int argc, char const *argv[])
 			DNS();
 		}
 		else if(protocol==5){
-			Ping("192.168.8.106");
+			HTTPS();			
 		}
 		else{
-			HTTPS();
+			Ping("192.168.8.106");
 		}
 	}
 	
