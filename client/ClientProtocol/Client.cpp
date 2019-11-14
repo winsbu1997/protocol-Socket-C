@@ -1,4 +1,4 @@
-#include "main.h"
+﻿#include "main.h"
 struct addrinfo *result = NULL,
 	*ptr = NULL,
 	hints;
@@ -776,10 +776,11 @@ int main()
 			DNS(ip);
 		}
 		else if (protocol == 5) {
-			ICMP(ip);
+			HTTPS(ip);
 		}
 		else {
-			HTTPS(ip);
+			
+			ICMP(ip);
 		}
 	}
 

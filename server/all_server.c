@@ -327,7 +327,7 @@ int HTTP(){
 	char sendbuf[DEFAULT_BUFLEN]={0};
 
     // Only this line has been changed. Everything is same.
-    char hello[] = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 1000\n\nHTTP Message from SERVER";
+    char hello[] = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 17\n\nHTTP Message from SERVER";
     // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
     {
@@ -561,7 +561,7 @@ void Ping(const char *ip)
         to->sin_addr = dst;
 
         memset(&icmp_hdr, 0, sizeof icmp_hdr);
-        icmp_hdr.type = ICMP_ECHO;
+        icmp_hdr.type = ICMP_ECHOREPLY;
         icmp_hdr.un.echo.sequence = sequence++;
         icmp_hdr.un.echo.id = bg++;
         memcpy(data, &icmp_hdr, sizeof icmp_hdr);
@@ -591,8 +591,8 @@ void Ping(const char *ip)
 		ECHOREPLY echoReply;
 
 		int nRet;
-		int nRet1 = recvfrom(sock,&echoReply,sizeof(ECHOREPLY),0,(struct sockaddr *)&from,
-				&fromsize);
+		//int nRet1 = recvfrom(sock,&echoReply,sizeof(ECHOREPLY),0,(struct sockaddr *)&from,
+		//		&fromsize);
 		//char on=1;
 		//setsockopt(rawSocket,IPPROTO_IP,IP_HDRINCL,&on,sizeof(on));
 		if((nRet = recvfrom(sock,&echoReply,sizeof(ECHOREPLY),0,(struct sockaddr *)&from,
@@ -627,10 +627,11 @@ int main(int argc, char const *argv[])
 			DNS();
 		}
 		else if(protocol==5){
-			Ping("192.168.8.101");
+			HTTPS();
 		}
 		else{
-			HTTPS();
+			
+			Ping("192.168.8.106");
 		}
 	}
 	
