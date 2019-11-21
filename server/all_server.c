@@ -551,7 +551,6 @@ void Ping(const char *ip)
     }
 
     while(1) {
-        sleep(1);
         unsigned char data[2048];
         int rc;
         struct timeval timeout = {3, 0}; //wait max 3 seconds for a reply
