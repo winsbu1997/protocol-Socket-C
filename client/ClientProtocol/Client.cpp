@@ -715,7 +715,7 @@ int HTTPS(char *ip) {
 		SSL_CTX_free(ctx);
 
 		WSACleanup();
-		//		printf("Finished.\n");
+		//printf("Finished.\n");
 		if (flag == 1) return 0;
 	}
 	return 0;
