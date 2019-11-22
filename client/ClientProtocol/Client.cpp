@@ -569,7 +569,7 @@ int ICMP(char *ip) {
 
 		objClientAddress.sin_addr.s_addr = inet_addr(ip);
 		objClientAddress.sin_family = AF_INET;
-		sleep(1000);
+		_sleep(1000);
 		nRet = sendto(rawSocket, sendBuffer, sizeof(sendBuffer), 0, (struct sockaddr *)&objClientAddress, nAddrLen);
 		if (nRet == SOCKET_ERROR)
 		{
