@@ -2,7 +2,7 @@
 int rand_var=0;
 char* Name[7]={"Hoang","Luan","Long","Duong","Hiep","Viet","*"};
 char PRO[6]={'1','2','3','4', '5','6'};
-const char *ip = "192.168.8.106";
+const char *ip = "192.168.8.103";
 int TCP1(int new_socket){
 	printf("\nUsing TCP ......... \n");
 	char sendbuf[DEFAULT_BUFLEN] ; 
@@ -290,7 +290,7 @@ int UDP(){
       
     while (1)
     {
-		sleep(1);
+		//sleep(1);
         int len= sizeof(cliaddr);
 		memset(recvbuf, '\0', DEFAULT_BUFLEN);
 
@@ -551,6 +551,7 @@ void Ping(const char *ip)
     }
 
     while(1) {
+        //sleep(1);
         unsigned char data[2048];
         int rc;
         struct timeval timeout = {3, 0}; //wait max 3 seconds for a reply
@@ -561,7 +562,7 @@ void Ping(const char *ip)
         to->sin_addr = dst;
 
         memset(&icmp_hdr, 0, sizeof icmp_hdr);
-        icmp_hdr.type = ICMP_ECHOREPLY;
+        icmp_hdr.type = 0;
         icmp_hdr.un.echo.sequence = sequence++;
         icmp_hdr.un.echo.id = bg++;
         memcpy(data, &icmp_hdr, sizeof icmp_hdr);
