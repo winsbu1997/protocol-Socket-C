@@ -1,4 +1,4 @@
-﻿#include "main.h"
+#include "main.h"
 struct addrinfo *result = NULL,
 	*ptr = NULL,
 	hints;
