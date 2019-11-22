@@ -17,7 +17,7 @@ struct ICMP {
 	USHORT cksum;
 	USHORT id;
 	USHORT seq;
-}_ICMP;
+}*_ICMP;
 typedef struct tagIPHDR
 {
 	u_char  version;	 // version number
