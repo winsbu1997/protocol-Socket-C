@@ -1,6 +1,9 @@
 6 Giao thức TCP, UDP, ICMP, DNS, HTTP, HTTPS sử dụng socket. Client chạy trên window sử dụng Visual Studio 2017, server chạy trên Ubuntu sử dụng terminal
 
-Giao thức tự động gửi tin nhắn từ client -> server và ngược lại. kết thúc khi tin nhắn (*).                                     Đổi các đường dẫn tới file Process_Hidden trong code CLient
+Giao thức tự động gửi tin nhắn từ client -> server và ngược lại. kết thúc khi tin nhắn (*).                                     
+
+Đổi các đường dẫn tới file Process_Hidden trong code CLient.
+
 Link ProcessHider của tác giả kernelm0de - https://github.com/kernelm0de/ProcessHider
 # Cách chạy: 
   - Chạy quyền Admin để gửi ICMP
