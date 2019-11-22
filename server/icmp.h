@@ -37,6 +37,13 @@ typedef struct tagECHOREPLY
 	char	cData[REQ_DATASIZE];
 	char cFiller[256];
 }ECHOREPLY,*PECHOREPLY;
+
+typedef struct tagECHOREQUEST
+{
+	ICMPHDR icmpHdr;
+	unsigned long	dwTime;
+	char	cData[REQ_DATASIZE];
+}ECHOREQUEST, *PECHOREQUEST;
 unsigned short checksum(unsigned short *b, int32_t size)
 {
 	int32_t len = size;

